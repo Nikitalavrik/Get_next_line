@@ -45,7 +45,7 @@ int		get_next_line(const int fd, char **line)
 	int				finded;
 	int				ret;
 
-	if (fd < 0 || fd < OPEN_MAX || (read(fd, tmp[fd], 0)) != 0 || !line)
+	if ((read(fd, tmp[OPEN_MAX], 0) != 0) || !line)
 		return (-1);
 	tmp[fd] = (!tmp[fd]) ? ft_strnew(BUFF_SIZE) : tmp[fd];
 	finded = ft_get_index(tmp[fd], '\n');
