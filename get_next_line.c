@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nlavrine <nlavrine@student.unit.ua>        +#+  +:+       +#+        */
+/*   By: nlavrine <nlavrine@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/28 15:56:34 by nlavrine          #+#    #+#             */
-/*   Updated: 2018/10/28 15:56:36 by nlavrine         ###   ########.fr       */
+/*   Updated: 2019/10/19 15:50:10 by nlavrine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int		get_next_line(const int fd, char **line)
 	{
 		check_tmp(line, tmp[fd], &size, ret);
 		if ((!(ret = read(fd, tmp[fd], BUFF_SIZE))) && !*tmp[fd])
-			return (0);
+			return (finded);
 		finded = ft_get_index(tmp[fd], '\n');
 		if (ret != BUFF_SIZE)
 			finded = get_find_and_clear(&tmp[fd], finded, ret);
@@ -64,5 +64,5 @@ int		get_next_line(const int fd, char **line)
 	*line = ft_realloc(*line, size, size + finded - 1);
 	*line = ft_strncat(*line, tmp[fd], finded - 1);
 	ft_strfromcpy(tmp[fd], tmp[fd], finded);
-	return (1);
+	return (finded);
 }
